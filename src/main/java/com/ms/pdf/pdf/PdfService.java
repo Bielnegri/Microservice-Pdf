@@ -24,10 +24,8 @@ public class PdfService {
     public byte[] generatePdfFromHtml(String htmlContent) {
         try (Page page = browser.newPage()) {
             page.setContent(htmlContent);
-            System.out.println("Conteúdo definido, gerando bytes...");
             page.waitForLoadState(LoadState.NETWORKIDLE);
             page.emulateMedia(new Page.EmulateMediaOptions().setMedia(Media.PRINT));
-
 
             return page.pdf(new Page.PdfOptions()
                     .setFormat("A4")
